@@ -874,52 +874,110 @@ American.printNationality()
 ### Question 51
 Define a class named American and its subclass NewYorker. 
 
-Hints:
+Solution;
 
-Use class Subclass(ParentClass) to define a subclass.
+class American(object):
+    pass
+
+class NewYorker(American):
+    pass
+
+An_American = American()
+A_NewYorker = NewYorker()
+print An_American
+print A_NewYorker
 
 
 ### Question 52
 Define a class named Circle which can be constructed by a radius. The Circle class has a method which can compute the area. 
 
-Hints:
+Solution:
+class Circle(object):
+    def __init__(self, R):
+        self.radius = R
 
-Use def methodName(self) to define a method.
+    def area(self):
+        return self.radius**2*3.14
+
+a_Circle = Circle(2)
+print aCircle.area()
+
 
 ### Question 53
 Define a class named Rectangle which can be constructed by a length and width. The Rectangle class has a method which can compute the area. 
 
-Hints:
+solution:
+class Rectangle(object):
+    def __init__(self, y, x):
+        self.length = y
+        self.width  = x
 
-Use def methodName(self) to define a method.
+    def area(self):
+        return self.length*self.width
+
+a_Rectangle = Rectangle(3,4)
+print a_Rectangle.area()
 
 ### Question 54
 Define a class named Shape and its subclass Square. The Square class has an init function which takes a length as argument. Both classes have a area function which can print the area of the shape where Shape's area is 0 by default.
 
-Hints:
+solution:
+class Shape(object):
+    def __init__(self):
+        pass
 
-To override a method in super class, we can define a method with the same name in the super class.
+    def area(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, l):
+        Shape.__init__(self)
+        self.length = l
+
+    def area(self):
+        return self.length*self.length
+
+aSquare= Square(3)
+print aSquare.area()
 
 ### Question 55
 Please raise a RuntimeError exception.
 
-Hints:
-
-Use raise() to raise an exception.
+solution:
+raise RuntimeError('something wrong')
 
 ### Question 56
 Write a function to compute 5/0 and use try/except to catch the exceptions.
 
-Hints:
+solution:
 
-Use try/except to catch exceptions.
+def throws():
+    return 5/0
+
+try:
+    throws()
+except ZeroDivisionError:
+    print "division by zero!"
+except Exception, err:
+    print 'Caught an exception'
+finally:
+    print 'In finally block for cleanup'
 
 ### Question 57
 Define a custom exception class which takes a string message as attribute.
 
-Hints:
+solution:
+class MyError(Exception):
+    """My own exception class
 
-To define a custom exception, we need to define a class inherited from Exception.
+    Attributes:
+        message  -- explanation of the error
+    """
+
+    def __init__(self, message):
+        self.message = message
+
+error = MyError("something wrong")
 
 ### Question 58
 Assuming that we have some email addresses in the "username@companyname.com" format, please write program to print the user name of a given email address. Both user names and company names are composed of letters only.
@@ -935,9 +993,12 @@ john
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
-Hints:
-
-Use \w to match letters.
+solution:
+import re
+emailAddress = raw_input()
+pat2 = "(\w+)@((\w+\.)+(com))"
+r2 = re.match(pat2,emailAddress)
+print r2.group(1)
 
 ### Question 59
 Assuming that we have some email addresses in the "username@companyname.com" format, please write program to print the company name of a given email address. Both user names and company names are composed of letters only.
@@ -952,10 +1013,13 @@ Then, the output of the program should be:
 google
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
+solution:
+import re
+emailAddress = raw_input()
+pat2 = "(\w+)@(\w+)\.(com)"
+r2 = re.match(pat2,emailAddress)
+print r2.group(2)
 
-Hints:
-
-Use \w to match letters.
 
 ### Question 60
 Write a program which accepts a sequence of words separated by whitespace as input to print the words composed of digits only.
@@ -971,29 +1035,32 @@ Then, the output of the program should be:
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
-Hints:
-
-Use re.findall() to find all substring using regex.
+solution:
+import re
+s = raw_input()
+print re.findall("\d+",s)
 
 ### Question 61
 Print a unicode string "hello world".
 
-Hints:
-
-Use u'strings' format to define unicode string.
+solution:
+unicodeString = u"hello world!"
+print unicodeString
 
 ### Question 62
 Write a program to read an ASCII string and to convert it to a unicode string encoded by utf-8.
 
-Hints:
-
-Use unicode() function to convert.
+solution:
+x = raw_input()
+y = unicode( x ,"utf-8")
+print x
 
 ### Question 63
 
 Write a special comment to indicate a Python source code file is in unicode.
 
-Hints:
+solution:
+# -*- coding: utf-8 -*-
 
 ### Question 64
 
@@ -1010,8 +1077,12 @@ Then, the output of the program should be:
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
-Hints:
-Use float() to convert an integer to a float
+solution:
+n=int(raw_input())
+sum=0.0
+for i in range(1,n+1):
+    sum += float(float(i)/(i+1))
+print sum
 
 ### Question 65
 
