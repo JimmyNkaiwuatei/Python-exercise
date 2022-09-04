@@ -1104,8 +1104,15 @@ Then, the output of the program should be:
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
-Hints:
-We can define recursive function in Python.
+solution:
+def f(n):
+    if n==0:
+        return 0
+    else:
+        return f(n-1)+100
+
+n=int(raw_input())
+print f(n)
 
 ### Question 66
 The Fibonacci Sequence is computed based on the following formula:
@@ -1127,8 +1134,14 @@ Then, the output of the program should be:
 
 In case of input data being supplied to the question, it should be assumed to be a console input.
 
-Hints:
-We can define recursive function in Python.
+solution:
+def f(n):
+    if n == 0: return 0
+    elif n == 1: return 1
+    else: return f(n-1)+f(n-2)
+
+n=int(raw_input())
+print f(n)
 
 ### Question 67
 The Fibonacci Sequence is computed based on the following formula:
@@ -1149,12 +1162,16 @@ Then, the output of the program should be:
 0,1,1,2,3,5,8,13
 
 
-Hints:
-We can define recursive function in Python.
-Use list comprehension to generate a list from an existing list.
-Use string.join() to join a list of strings.
+solution:
 
-In case of input data being supplied to the question, it should be assumed to be a console input.
+def f(n):
+    if n == 0: return 0
+    elif n == 1: return 1
+    else: return f(n-1)+f(n-2)
+
+n=int(raw_input())
+values = [str(f(x)) for x in range(0, n+1)]
+print ",".join(values)
 
 ### Question 68
 
@@ -1169,10 +1186,22 @@ Then, the output of the program should be:
 
 0,2,4,6,8,10
 
-Hints:
-Use yield to produce the next value in generator.
+solution:
+def EvenGenerator(n):
+    i=0
+    while i<=n:
+        if i%2==0:
+            yield i
+        i+=1
 
-In case of input data being supplied to the question, it should be assumed to be a console input.
+
+n=int(raw_input())
+values = []
+for i in EvenGenerator(n):
+    values.append(str(i))
+
+print ",".join(values)
+
 
 ### Question 69
 Please write a program using generator to print the numbers which can be divisible by 5 and 7 between 0 and n in comma separated form while n is input by console.
@@ -1186,17 +1215,28 @@ Then, the output of the program should be:
 
 0,35,70
 
-Hints:
-Use yield to produce the next value in generator.
+solution:
+def NumGenerator(n):
+    for n in range(n+1):
+        if n%5==0 and n%7==0:
+            yield n
 
-In case of input data being supplied to the question, it should be assumed to be a console input.
+m=int(raw_input())
+values = []
+for n in NumGenerator(m):
+    values.append(str(n))
+
+print ",".join(values)
+
 
 ### Question 70
 Please write assert statements to verify that every number in the list [2,4,6,8] is even.
 
-Hints:
-Use "assert expression" to make assertion.
-
+solution:
+list = [2,4,6,8]
+for n in list:
+    assert n%2==0
+    
 ### Question 71
 Please write a program which accepts basic mathematic expression from console and print the evaluation result.
 
@@ -1209,8 +1249,9 @@ Then, the output of the program should be:
 
 38
 
-Hints:
-Use eval() to evaluate an expression.
+solution:
+expression = raw_input()
+print evaluate(expression)
 
 ### Question 72
 Please write a binary search function which searches an item in a sorted list. The function should return the index of element to be searched in the list.
