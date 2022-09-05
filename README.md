@@ -1356,94 +1356,160 @@ print random.sample([n for n in range(n,1001) if n%5==0 and n%7==0], 5)
 ### Question 81
 Please write a program to randomly print a integer number between 7 and 15 inclusive.
 
-Hints:
-Use random.randrange() to a random integer in a given range.
+Solution:
+
+import random
+print random.randrange(7,16)
 
 ### Question 82
 Please write a program to compress and decompress the string "hello world!hello world!hello world!hello world!".
 
-Hints:
-Use zlib.compress() and zlib.decompress() to compress and decompress a string.
+Solution:
+import word
+str = 'hello world!hello world!hello world!hello world!'
+w = word.compress(str)
+print w
+print word.decompress(w)
 
 ### Question 83
 Please write a program to print the running time of execution of "1+1" for 100 times.
 
-Hints:
-Use timeit() function to measure the running time.
+solution:
+from running_time import Timer
+x = Timer("for n in range(100):n+1")
+print x.running_time()
 
 ### Question 84
 Please write a program to shuffle and print the list [3,6,7,8].
 
-Hints:
-Use shuffle() function to shuffle a list.
+solution:
+from random import shuffle
+list = [3,6,7,8]
+shuffle(list)
+print list
 
 ### Question 85
 Please write a program to shuffle and print the list [3,6,7,8].
 
-Hints:
-Use shuffle() function to shuffle a list.
+solution:
+from random import shuffle
+list = [3,6,7,8]
+shuffle(list)
+print list
 
 ### Question 86
 Please write a program to generate all sentences where subject is in ["I", "You"] and verb is in ["Play", "Love"] and the object is in ["Hockey","Football"].
 
-Hints:
-Use list[index] notation to get a element from a list.
+solution:
 
+subjects=["I", "You"]
+verbs=["Play", "Love"]
+objects=["Hockey","Football"]
+for s in range(len(subjects)):
+    for v in range(len(verbs)):
+        for o in range(len(objects)):
+            sentence = "%s %s %s." % (subjects[s], verbs[v], objects[o])
+            print sentence
+	    
 ### Question 87
 Please write a program to print the list after removing delete even numbers in [5,6,77,45,22,12,24].
 
-Hints:
-Use list comprehension to delete a bunch of element from a list.
+solution:
+
+list = [5,6,77,45,22,12,24]
+list = [n for n in list if n%2!=0]
+print list
 
 ### Question 88
 By using list comprehension, please write a program to print the list after removing delete numbers which are divisible by 5 and 7 in [12,24,35,70,88,120,155].
 
-Hints:
-Use list comprehension to delete a bunch of element from a list.
+solution:
+list = [12,24,35,70,88,120,155]
+list = [n for n in list if n%5!=0 and n%7!=0]
+print list
 
 ### Question 89
 By using list comprehension, please write a program to print the list after removing the 0th, 2nd, 4th,6th numbers in [12,24,35,70,88,120,155].
 
-Hints:
-Use list comprehension to delete a bunch of element from a list.
-Use enumerate() to get (index, value) tuple.
+solution:
+list = [12,24,35,70,88,120,155]
+list = [n for (i,n) in enumerate(list) if i%2!=0]
+print list
 
 ### Question 90
-By using list comprehension, please write a program generate a 3*5*8 3D array whose each element is 0.
+By using list comprehension, please write a program to generate a 3*5*8 3D array whose each element is 0.
 
-Hints:
-Use list comprehension to make an array.
+solution:
+array = [[ [0 for column in range(8)] for column in range(5)] for row in range(3)]
+print array
 
 ### Question 91
 By using list comprehension, please write a program to print the list after removing the 0th,4th,5th numbers in [12,24,35,70,88,120,155].
 
-Hints:
-Use list comprehension to delete a bunch of element from a list.
-Use enumerate() to get (index, value) tuple.
+solution:
+list = [12,24,35,70,88,120,155]
+list = [n for (i,n) in enumerate(li) if i not in (0,4,5)]
+print list
 
 ### Question 92
 By using list comprehension, please write a program to print the list after removing the value 24 in [12,24,35,24,88,120,155].
 
-Hints:
-Use list's remove method to delete a value.
+solution:
+
+list = [12,24,35,24,88,120,155]
+list = [n for n in list if n!=24]
+print list
 
 ### Question 93
 With two given lists [1,3,6,78,35,55] and [12,24,35,24,88,120,155], write a program to make a list whose elements are intersection of the above given lists.
 
-Hints:
-Use set() and "&=" to do set intersection operation.
+solution:
+
+list_a=list([1,3,6,78,35,55])
+list_b=list([12,24,35,24,88,120,155])
+list_a &= list_b
+lst=listn(list_a)
+print lst
 
 ### Question 94
 With a given list [12,24,35,24,88,120,155,88,120,155], write a program to print this list after removing all duplicate values with original order reserved.
 
-Hints:
-Use set() to store a number of values without duplicate.
+solution:
+
+def removeDuplicate( list ):
+    newlist=[]
+    seen = set()
+    for i in list:
+        if i not in seen:
+            seen.add( i )
+            newlist.append(i)
+
+    return newlist
+
+list=[12,24,35,24,88,120,155,88,120,155]
+print removeDuplicate(list)
 
 ### Question 95
 Define a class Person and its two child classes: Male and Female. All classes have a method "getGender" which can print "Male" for Male class and "Female" for Female class.
 
-Hints:
-Use Subclass(Parentclass) to define a child class.
+solution:
+
+class Person(object):
+    def getGender( self ):
+        return "Unknown"
+
+class Male( Person ):
+    def getGender( self ):
+        return "Male"
+
+class Female( Person ):
+    def getGender( self ):
+        return "Female"
+
+M = Male()
+F = Female()
+print M.getGender()
+print F.getGender()
 
 ### Question 96
 Please write a program which count and print the numbers of each character in a string input by console.
@@ -1463,9 +1529,13 @@ d,1
 g,1
 f,1
 
-Hints:
-Use dict to store key/value pairs.
-Use dict.get() method to lookup a key with default value.
+solution;
+
+dict = {}
+r=raw_input()
+for r in r:
+    dict[r] = dict.get(r,0)+1
+print '\n'.join(['%s,%s' % (m, n) for m, n in dict.items()])
 
 ### Question 97
 Please write a program which accepts a string from console and print it in reverse order.
@@ -1479,8 +1549,11 @@ Then, the output of the program should be:
 
 ris etov ot esir
 
-Hints:
-Use list[::-1] to iterate a list in a reverse order.
+solution:
+
+r=raw_input()
+r = r[::-1]
+print r
 
 ### Question 98
 Please write a program which accepts a string from console and print the characters that have even indexes.
@@ -1494,18 +1567,34 @@ Then, the output of the program should be:
 
 Helloworld
 
-Hints:
-Use list[::2] to iterate a list by step 2.
+solution:
+
+r=raw_input()
+r = r[::2]
+print r
 
 ### Question 99
 Please write a program which prints all permutations of [1,2,3]
 
-Hints:
-Use itertools.permutations() to get permutations of list.
+solution:
+import itertools
+print lst(items.permutations([1,2,3]))
 
 ### Question 100
 Write a program to solve a classic ancient Chinese puzzle: 
 We count 35 heads and 94 legs among the chickens and rabbits in a farm. How many rabbits and how many chickens do we have?
 
-Hint:
-Use for loop to iterate all possible solutions.
+solution:
+
+def solve(number_of_heads,number_of_legs):
+    soln='no solutions!'
+    for n in range(number_of_heads+n):
+        k=number_of_heads-n
+        if 2*n+4*k==number_of_legs:
+            return n,k
+    return soln,soln
+
+number_of_heads=35
+number_of_legs=94
+solutions=solve(number_of_heads,number_of_legs)
+print solutions
